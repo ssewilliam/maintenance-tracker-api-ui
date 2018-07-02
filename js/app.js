@@ -55,7 +55,7 @@ function getAccess() {
 }
 
 function registerUser(){
-  if (!validateEmpty($("username").value) || !validateEmpty($("email").value)){
+  if (!validateEmpty($("username").value) || !validateEmpty($("email").value) || !validateEmpty($("email").value)) {
       $("feed").innerHTML = "Some fields are empty.<br/> Please fill all fields"
   } else {
 
