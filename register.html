@@ -16,7 +16,7 @@
                 <img src="images/mt-logo.jpg" alt="maintenace tracker">
             </div>
         </div>
-        <form action="login.html" method="post">
+        <form id="registractionForm" action="login.html" method="post">
             <div class="form_group">
                 <label for="username"></label>
                 <input type="text" class="form-control" name="username" id="username" placeholder="username">
@@ -28,15 +28,10 @@
             </div>
 
             <div class="form_group">
-                <label for="phone"></label>
-                <input type="tel" class="form-control" name="phone" id="phone" placeholder="0701-234567">
-            </div>
-
-            <div class="form_group">
                 <label for="password"></label>
                 <input type="password" class="form-control" name="password" id="password" placeholder="password">
             </div>
-
+            <div id="feed" class="text-center" style="font-size:16px;color:red;font-weight:bold;"></div>
             <div class="form_group">
                 <input type="submit" value="Sign Up">
                 <span class="already-a-member">
@@ -46,6 +41,8 @@
             </div>
         </form>
     </div>
+    <script src="js/cookieJs.js"></script>
+    <script src="js/app.js"></script>
 </body>
 
 </html>
