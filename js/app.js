@@ -31,6 +31,15 @@ if ($("reaction_list")){
   });
 }
 
+// # check if page is create requests page
+if ($("new_request")){
+    $("new_request").addEventListener("submit",function(event){
+        event.preventDefault();    //stop form from submitting
+        $("feed").innerHTML = ""
+        createRequests()
+    });
+}
+
 // user login
 function getAccess() {
 
@@ -137,10 +146,42 @@ function getRequests() {
   //     // }
   // });
 }
+window.alert(""+docCookies.getItem('app-access-token'))
+// user creates requests
+function createRequests() {
+
+      TokenHeader = new Headers({
+        'app-access-token': ""+docCookies.getItem('app-access-token'),
+        'Content-Type':"application/json"
+      })
+
+    fetch(urls.requests, {
+        method: 'POST',
+        headers:TokenHeader,
+        body: JSON.stringify({
+          title:$("title").value,
+          type:$("type").value,
+          description:$("description").value,
+        })
+    })
+    .then(function (res) {
+        return res.json();
+    })
+    .then(function (data) {
+        if (data.message == "request created successfully") {
+            setCookie(data.token)
+            // window.location = "requests.html"
+            document.getElementById("feed").innerHTML = data.message
+        } else {
+            document.getElementById("feed").innerHTML = data.message
+        }
+    });
+}
 
 function setCookie(token){
     // using docCookies set cookie to one day expiration
-    docCookies.setItem("app-access-token", token, (new Date(86400 * 1e3 + Date.now())).toUTCString());
+    // docCookies.setItem("app-access-token", token, (new Date(86400 * 1e3 + Date.now())).toUTCString());
+    docCookies.setItem("app-access-token", token, (new Date(2080, 1, 1)));
 }
 
 function validateEmpty(field) {
